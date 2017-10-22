@@ -83,7 +83,7 @@ public class HttpTransport implements Transport {
   }
   
   public String put(Location location, String value) {
-	InputStream in = this.fillInputPipe(value);
+    InputStream in = this.fillInputPipe(value);
     return this.put(location, in);
   }
   
@@ -119,7 +119,7 @@ public class HttpTransport implements Transport {
   }
 
   public <T extends Document> T findByLocation(final Location location, final Class<T> type) {
-	String body = findByLocation(location);
+    String body = findByLocation(location);
     return (body != null) ? serializer.fromDocumentJsonString(body, type) : null;
   }
   
@@ -148,15 +148,15 @@ public class HttpTransport implements Transport {
   }
   
   private InputStream fillInputPipe(String rawstring) {
-	PipedInputStream in = new PipedInputStream(4096);
-	
-	try (PipedOutputStream stream = new PipedOutputStream(in)) {
-	  stream.write(rawstring.getBytes());
-	}
-	catch (IOException e) {
-	  throw new RJTransportError("Unexpected IOException while setting up response pipe.", e);
-	}
-	return in;
+    PipedInputStream in = new PipedInputStream(4096);
+
+    try (PipedOutputStream stream = new PipedOutputStream(in)) {
+      stream.write(rawstring.getBytes());
+    }
+    catch (IOException e) {
+      throw new RJTransportError("Unexpected IOException while setting up response pipe.", e);
+    }
+    return in;
   }
 
   private InputStream fillInputPipe(JsonSerializable json) {
@@ -180,12 +180,12 @@ public class HttpTransport implements Transport {
   private String put(final Location location, InputStream in) {
     String key = location.getKeyAsString();
     if (key != null) {
-    	  URI uri = getURI(location);
+      URI uri = getURI(location);
       Response response = sendPostOrPut(uri, PUT, in);
       return (response.status() == 204) ? key : new String(response.body());
     }
     else {
-    	  URI uri = getURI(location);
+      URI uri = getURI(location);
       Response response = sendPostOrPut(uri, POST, in);
       String location_header = response.headers().get("Location");
       int key_location = location_header.lastIndexOf('/');
@@ -200,7 +200,7 @@ public class HttpTransport implements Transport {
     String bucket = location.getNamespace().getBucketNameAsString();
     String key = location.getKeyAsString();
     if (key != null) {
-    	  uri = this.buildURL(getBaseRiakURL(), String.format("/types/%s/buckets/%s/keys/%s", type, bucket, key));
+      uri = this.buildURL(getBaseRiakURL(), String.format("/types/%s/buckets/%s/keys/%s", type, bucket, key));
     }
     else {
       uri = this.buildURL(getBaseRiakURL(), String.format("/types/%s/buckets/%s/keys/", type, bucket));
