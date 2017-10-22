@@ -52,20 +52,20 @@ public class Client {
     return transport.pingKV();
   }
   public String put(final Location location, final String value) {
-	return transport.put(location, value);
+    return transport.put(location, value);
   }
   public String put(final Location location, final Document document) {
     return transport.put(location, document);
   }
   public String put(final Document document) {
-	return transport.put(document);
+    return transport.put(document);
   }
   
   public String find(Location location) {
-	return transport.findByLocation(location);
+    return transport.findByLocation(location);
   }
   public <T extends Document> T find(Location location, Class<T> type) {
-	return transport.findByLocation(location, type);
+    return transport.findByLocation(location, type);
   }
   
   public String toString() {

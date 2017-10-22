@@ -83,7 +83,7 @@ public class HttpTransport implements Transport {
   }
   
   public String put(Location location, String value) {
-	InputStream in = this.fillInputPipe(value);
+    InputStream in = this.fillInputPipe(value);
     return this.put(location, in);
   }
   
@@ -119,7 +119,7 @@ public class HttpTransport implements Transport {
   }
 
   public <T extends Document> T findByLocation(final Location location, final Class<T> type) {
-	String body = findByLocation(location);
+    String body = findByLocation(location);
     return (body != null) ? serializer.fromDocumentJsonString(body, type) : null;
   }
   
@@ -185,7 +185,7 @@ public class HttpTransport implements Transport {
       return (response.status() == 204) ? key : new String(response.body());
     }
     else {
-    	  URI uri = getURI(location);
+      URI uri = getURI(location);
       Response response = sendPostOrPut(uri, POST, in);
       String location_header = response.headers().get("Location");
       int key_location = location_header.lastIndexOf('/');
