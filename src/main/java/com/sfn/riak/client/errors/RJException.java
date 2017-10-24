@@ -2,7 +2,7 @@ package com.sfn.riak.client.errors;
 
 /**
  * Thrown to indicate a nondescript failure has occurred within
- * the Riak Json Java client library.
+ * the Riak Java HTTP client library.
  * 
  * @author Randy Secrist
  */

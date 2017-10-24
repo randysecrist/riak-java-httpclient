@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * <p>
  *
  * @author Brian Roach <roach at basho dot com>
- * @author Randy Secrist <rsecrist at gmail.com>
  * @since 2.0
  */
 public final class BinaryValue
