@@ -68,6 +68,10 @@ public class Client {
     return transport.findByLocation(location, type);
   }
   
+  public boolean delete(Location location) {
+    return transport.delete(location);
+  }
+  
   public String toString() {
     return transport.toString();
   }

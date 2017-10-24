@@ -57,14 +57,13 @@
 	</distributionManagement>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -98,7 +97,7 @@
 					<properties>
 						<!-- <includeTags>fast</includeTags> -->
 						<excludeTags>slow</excludeTags>
-						<!-- <configurationParameters> junit.jupiter.conditions.deactivate 
+						<!-- <configurationParameters> junit.jupiter.conditions.deactivate
 							= * </configurationParameters> -->
 					</properties>
 				</configuration>
@@ -200,6 +199,18 @@
 			<groupId>org.junit.vintage</groupId>
 			<artifactId>junit-vintage-engine</artifactId>
 			<version>${junit.vintage.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>1.7.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.7.3</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
