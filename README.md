@@ -44,6 +44,7 @@ client.find(location)
 ### Document Serialization
 
 ### Deployment
+# 1.7 Source Level
 ```bash
-mvn deploy -DaltDeploymentRepository=snapshot-repo::default::file:../randysecrist-mvn-repo/snapshots
+mvn -Dmaven.test.skip=true -Dsource.level=1.7 deploy -DaltDeploymentRepository=snapshot-repo::default::file:../randysecrist-mvn-repo/snapshots
 ```
