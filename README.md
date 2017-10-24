@@ -45,6 +45,5 @@ client.find(location)
 
 ### Deployment
 ```bash
-mvn deploy
 mvn deploy -DaltDeploymentRepository=snapshot-repo::default::file:../randysecrist-mvn-repo/snapshots
 ```
