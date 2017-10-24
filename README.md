@@ -10,6 +10,21 @@ be used to perform similar KV operations over HTTP.
 In short, this is a fallback client which can be used when the PB channel doesn't work.
 
 ### Setup
+```xml
+    <pluginRepositories>
+      <pluginRepository>
+       <id>Randy's Snapshots</id>
+        <url>https://github.com/randysecrist/randysecrist-mvn-repo/raw/master/snapshots</url>
+      </pluginRepository>
+    </pluginRepositories>
+
+	<dependency>
+		<groupId>com.sfn.riak.client</groupId>
+		<artifactId>riak-java-httpclient</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+```
+
 ```java
 Client client = new Client("localhost", 8098)
 ```
