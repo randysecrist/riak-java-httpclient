@@ -1,5 +1,11 @@
 package com.sfn.riak.client.transports.http;
 
+import static com.sfn.riak.client.transports.http.Method.DELETE;
+import static com.sfn.riak.client.transports.http.Method.GET;
+import static com.sfn.riak.client.transports.http.Method.POST;
+import static com.sfn.riak.client.transports.http.Method.PUT;
+import static com.sfn.riak.client.utils.StreamUtils.copyInputStream;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +19,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -24,12 +31,6 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import com.google.common.collect.ImmutableMap;
 import com.sfn.riak.client.errors.RJTransportError;
 
-import static com.sfn.riak.client.transports.http.Method.DELETE;
-import static com.sfn.riak.client.transports.http.Method.GET;
-import static com.sfn.riak.client.transports.http.Method.POST;
-import static com.sfn.riak.client.transports.http.Method.PUT;
-import static com.sfn.riak.client.utils.StreamUtils.copyInputStream;
-
 /**
  *
  * @author Randy Secrist
@@ -40,7 +41,14 @@ public class ApacheRestClient extends AbstractRestClient {
     super();
   }
 
-  @Override
+  public Response sendHead(URI uri) {
+      CloseableHttpClient httpclient = this.createClient();
+
+      HttpUriRequest uri_request = new HttpHead(uri);
+      HttpResponse response = this.makeRequest(httpclient, uri_request);
+      return this.getResult(response, uri_request.getProtocolVersion());
+  }
+  
   public Response sendGetOrDelete(URI uri, Method method) {
     if (method == null)
       method = GET;
