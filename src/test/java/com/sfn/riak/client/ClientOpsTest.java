@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.ThrowingSupplier;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,8 +32,11 @@ public class ClientOpsTest {
 	void canWriteData() throws Throwable {
 		String key = client.put(location, "test_value");
 		assertEquals(location.getKeyAsString(), key);
-		String value = assertTimeout(ofSeconds(10), () -> {
-			return client.find(location);
+		String value = assertTimeout(ofSeconds(10), new ThrowingSupplier<String>() {
+			@Override
+			public String get() throws Throwable {
+				return client.find(location);
+			}
 		});
 		assertEquals("test_value", value);
 	}
